@@ -9,7 +9,7 @@ To build the site:
 3. Go into the submodule directory and commit the new changes.
 4. Run docpad build.
 5. Commit this repo.
-4. Push all of the things.
+6. Push all of the things.
 
 ## License
 Copyright &copy; 2013+ All rights reserved.
