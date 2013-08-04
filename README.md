@@ -6,12 +6,12 @@ A static front-end to the [primary repo](https://github.com/the-mason-jar/the-ma
 
 Still a lot of work to be done here. For example the submodule thing seems to work, but the process seems a bit convoluted so I'm not sure I'm doing it the best way.
 
-To build the site:
+To build the site to pull in new changes in the [primary repo](https://github.com/the-mason-jar/the-mason-jar):
 
 1. Commit any changes to the primary repo and push them up to Github.
-2. Run git submodule update to pull them down.
+2. Run `git submodule update` to pull them down.
 3. Go into the submodule directory, pull and commit the new changes. Then push again.
-4. Head back up to the root directior here. Run docpad build.
+4. Head back up to the root directory here. Run `docpad build`.
 5. Commit this repo.
 6. Push all of the things.
 
