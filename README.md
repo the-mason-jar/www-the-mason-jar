@@ -10,7 +10,7 @@ To build the site to pull in new changes in the [primary repo](https://github.co
 
 1. Commit any changes to the primary repo and push them up to Github.
 2. Run `git submodule update` to pull them down.
-3. Go into the submodule directory, pull and commit the new changes. Then push again.
+3. Go into the submodule directory `src/documents/the-mason-jar`, pull and commit the new changes. Then push again.
 4. Head back up to the root directory here. Run `docpad build`.
 5. Commit this repo.
 6. Push all of the things.

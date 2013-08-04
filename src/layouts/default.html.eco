@@ -7,7 +7,7 @@
 </head>
 <body class="article-detail">
     <%- @content %>
-    <div class="content-wrap">
+    <div class="content-wrap"
     <ul>
         <% for page in @getCollection("pages").toJSON(): %>
             <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
