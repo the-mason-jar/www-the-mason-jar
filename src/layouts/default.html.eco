@@ -5,25 +5,14 @@
     <%- @getBlock("styles").add(["/styles/style.css"]).toHTML() %>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Anonymous+Pro:400,700,400italic,700italic|Merriweather:400,700,300">
 </head>
-<body class="article-detail">
+<body>
+  <div class="content-wrap">
+  <header class="header">
+    <h1><%= @getPageTitle() %></h1>
+  </header>
     <%- @content %>
-    <div class="content-wrap">
-      <h3>Featured Cocktail: <% for page in @getCollection("featured").toJSON(): %>
-            <a href="<%= page.url %>">
-                <%= page.title %>
-            </a>
-          <% end %>
-      </h3>
-      <ul>
-          <% for page in @getCollection("allCocktails").toJSON(): %>
-              <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
-                  <a href="<%= page.url %>">
-                      <%= page.title %>
-                  </a>
-              </li>
-          <% end %>
-      </ul>
-  </div>
     <%- @getBlock("scripts").toHTML() %>
+    <h4>Hipster as fuck.&trade;</h4>
+  </div>
 </body>
 </html>

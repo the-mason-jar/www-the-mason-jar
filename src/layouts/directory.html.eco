@@ -1,8 +1,14 @@
 ---
 layout: default
 ---
-<div class="content-wrap">
-  <h1><%= @getPageTitle() %></h1>
+
+  <h2>Featured Cocktail: <% for page in @getCollection("featured").toJSON(): %>
+        <a href="<%= page.url %>">
+            <%= page.title %>
+        </a>
+      <% end %>
+  </h2>
+
   <ul>
       <% for page in @getCollection("allCocktails").toJSON(): %>
           <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
@@ -12,4 +18,3 @@ layout: default
           </li>
       <% end %>
   </ul>
-</div>

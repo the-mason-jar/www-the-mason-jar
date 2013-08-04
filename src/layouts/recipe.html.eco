@@ -1,10 +1,7 @@
 ---
 layout: default
 ---
-<header class="content-wrap">
-  <h1><%= @getPageTitle() %></h1>
-</header>
 
-<article class="content-wrap">
+<article>
   <%- @content %>
 </article>
