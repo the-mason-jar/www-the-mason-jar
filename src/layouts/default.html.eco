@@ -9,6 +9,7 @@
   <div class="content-wrap">
   <header class="header">
     <h1><%= @getPageTitle() %></h1>
+    <h2 class="description">Home-crafted, open-source cocktails &amp; accoutrements.</h2>
   </header>
     <%- @content %>
     <%- @getBlock("scripts").toHTML() %>
