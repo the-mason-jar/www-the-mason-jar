@@ -1,13 +1,17 @@
-# The Mason Jar Project - www - powered by [DocPad](http://docpad.org)
+## [The Mason Jar Project](http://www.the-mason-jar.com/)
 
-A static front-end to the primary repo.  Still a lot of work to be done here.
+### Powered by [DocPad](http://docpad.org)
+
+A static front-end to the [primary repo](https://github.com/the-mason-jar/the-mason-jar). If you're looking at this and want to submit your own cocktails or infusions, [go there](https://github.com/the-mason-jar/the-mason-jar).
+
+Still a lot of work to be done here. For example the submodule thing seems to work, but the process seems a bit convoluted so I'm not sure I'm doing it the best way.
 
 To build the site:
 
 1. Commit any changes to the primary repo and push them up to Github.
 2. Run git submodule update to pull them down.
-3. Go into the submodule directory and commit the new changes.
-4. Run docpad build.
+3. Go into the submodule directory, pull and commit the new changes. Then push again.
+4. Head back up to the root directior here. Run docpad build.
 5. Commit this repo.
 6. Push all of the things.
 
