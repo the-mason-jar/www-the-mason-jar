@@ -6,25 +6,27 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Anonymous+Pro:400,700,400italic,700italic|Merriweather:400,700,300">
 </head>
 <body class="article-detail">
-  <ul>
-      <% for page in @getCollection("pages").toJSON(): %>
-          <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
-              <a href="<%= page.url %>">
-                  <%= page.title %>
-              </a>
-          </li>
-      <% end %>
-  </ul>
-  <ul>
-      <% for page in @getCollection("allCocktails").toJSON(): %>
-          <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
-              <a href="<%= page.url %>">
-                  <%= page.title %>
-              </a>
-          </li>
-      <% end %>
-  </ul>
     <%- @content %>
+    <div class="content-wrap">
+    <ul>
+        <% for page in @getCollection("pages").toJSON(): %>
+            <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
+                <a href="<%= page.url %>">
+                    <%= page.title %>
+                </a>
+            </li>
+        <% end %>
+    </ul>
+    <ul>
+        <% for page in @getCollection("allCocktails").toJSON(): %>
+            <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
+                <a href="<%= page.url %>">
+                    <%= page.title %>
+                </a>
+            </li>
+        <% end %>
+    </ul>
+  </div>
     <%- @getBlock("scripts").toHTML() %>
 </body>
 </html>
