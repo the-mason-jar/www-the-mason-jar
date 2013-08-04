@@ -6,7 +6,9 @@ To build the site:
 
 1. Commit any changes to the primary repo and push them up to Github.
 2. Run git submodule update to pull them down.
-3. Run docpad build.
+3. Go into the submodule directory and commit the new changes.
+4. Run docpad build.
+5. Commit this repo.
 4. Push all of the things.
 
 ## License
