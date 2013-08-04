@@ -7,25 +7,22 @@
 </head>
 <body class="article-detail">
     <%- @content %>
-    <div class="content-wrap"
-    <ul>
-        <% for page in @getCollection("pages").toJSON(): %>
-            <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
-                <a href="<%= page.url %>">
-                    <%= page.title %>
-                </a>
-            </li>
-        <% end %>
-    </ul>
-    <ul>
-        <% for page in @getCollection("allCocktails").toJSON(): %>
-            <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
-                <a href="<%= page.url %>">
-                    <%= page.title %>
-                </a>
-            </li>
-        <% end %>
-    </ul>
+    <div class="content-wrap">
+      <h3>Featured Cocktail: <% for page in @getCollection("featured").toJSON(): %>
+            <a href="<%= page.url %>">
+                <%= page.title %>
+            </a>
+          <% end %>
+      </h3>
+      <ul>
+          <% for page in @getCollection("allCocktails").toJSON(): %>
+              <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
+                  <a href="<%= page.url %>">
+                      <%= page.title %>
+                  </a>
+              </li>
+          <% end %>
+      </ul>
   </div>
     <%- @getBlock("scripts").toHTML() %>
 </body>

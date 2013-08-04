@@ -1,0 +1,15 @@
+---
+layout: default
+---
+<div class="content-wrap">
+  <h1><%= @getPageTitle() %></h1>
+  <ul>
+      <% for page in @getCollection("allCocktails").toJSON(): %>
+          <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
+              <a href="<%= page.url %>">
+                  <%= page.title %>
+              </a>
+          </li>
+      <% end %>
+  </ul>
+</div>

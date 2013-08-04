@@ -11,15 +11,20 @@ docpadConfig = {
         getPageTitle: -> if @document.title then "#{@document.title}" else @site.title
 
     collections:
-            pages: ->
-                @getCollection('html').findAllLive({isPage:true},[{filename:1}])
+        pages: ->
+            @getCollection('html').findAllLive({isPage:true},[{filename:1}])
 
-            allCocktails: (database) -> database.findAll({relativeOutDirPath:/cocktails[\/\\]\w+/},[date:-1]).on "add", (model) ->
-            model.setMetaDefaults({layout: "post"})
+        featured: ->
+            @getCollection("html").findAllLive({featured:true}, [{title: 1}])
 
-            allInfusions: (database) -> database.findAll({relativeOutDirPath:/infusions[\/\\]\w+/},[date:-1])
+        allCocktails: (database) -> database.findAll({relativeOutDirPath:/cocktails[\/\\]\w+/},[date:-1]).on('add', (document) ->
+                document.setMetaDefaults(layout:'recipe')  unless document.get('layout'))
 
-            allGarnishes: (database) -> database.findAll({relativeOutDirPath:/garnishes[\/\\]\w+/},[date:-1])
+        allInfusions: (database) -> database.findAll({relativeOutDirPath:/infusions[\/\\]\w+/},[date:-1]).on('add', (document) ->
+                document.setMetaDefaults(layout:'recipe')  unless document.get('layout'))
+
+        allExtras: (database) -> database.findAll({relativeOutDirPath:/extras[\/\\]\w+/},[date:-1]).on('add', (document) ->
+                document.setMetaDefaults(layout:'recipe')  unless document.get('layout'))
 
     # ...
 }
