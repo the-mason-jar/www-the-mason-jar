@@ -1,6 +1,7 @@
 ---
 layout: post
 title: The Mason Jar Project
+subtitle: Home-crafted, open-source cocktails & accoutrements.
 isPage: true
 ---
 
