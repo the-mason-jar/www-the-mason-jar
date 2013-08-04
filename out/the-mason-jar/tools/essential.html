@@ -1,0 +1,150 @@
+<html>
+<head>
+    <title>Essential Tools | The Mason Jar</title>
+    <meta http-equiv="X-Powered-By" content="DocPad v6.47.0"/>
+    <style >html.wait {
+	cursor: wait !important;
+	opacity: 0;
+	transition: opacity 0.5s ease;
+}</style><link  rel="stylesheet" href="/styles/style.css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Anonymous+Pro:400,700,400italic,700italic|Merriweather:400,700,300">
+</head>
+<body class="article-detail">
+  <ul>
+      
+          <li class="inactive">
+              <a href="/about.html">
+                  About
+              </a>
+          </li>
+      
+          <li class="inactive">
+              <a href="/index.html">
+                  Home
+              </a>
+          </li>
+      
+  </ul>
+  <ul>
+      
+          <li class="inactive">
+              <a href="/the-mason-jar/recipes/cocktails/the-bloody-mary/mary-sweet.html">
+                  The Mary Sweet
+              </a>
+          </li>
+      
+          <li class="inactive">
+              <a href="/the-mason-jar/recipes/cocktails/the-bloody-mary/original-mary-danger.html">
+                  The Original Mary Danger
+              </a>
+          </li>
+      
+          <li class="inactive">
+              <a href="/the-mason-jar/recipes/cocktails/the-bloody-mary/pickled-mary.html">
+                  The Pickled Mary
+              </a>
+          </li>
+      
+          <li class="inactive">
+              <a href="/the-mason-jar/recipes/cocktails/the-margarita/matador.html">
+                  The Matador
+              </a>
+          </li>
+      
+          <li class="inactive">
+              <a href="/the-mason-jar/recipes/garnishes/volcano-salt.html">
+                  Volcano Salt
+              </a>
+          </li>
+      
+          <li class="inactive">
+              <a href="/the-mason-jar/recipes/cocktails/the-sazerac/sazerac.html">
+                  The Sazerac
+              </a>
+          </li>
+      
+          <li class="inactive">
+              <a href="/the-mason-jar/recipes/infusions/vodka/esmerelda.html">
+                  Esmerelda
+              </a>
+          </li>
+      
+          <li class="inactive">
+              <a href="/the-mason-jar/recipes/infusions/vodka/morgana.html">
+                  Morgana
+              </a>
+          </li>
+      
+          <li class="inactive">
+              <a href="/the-mason-jar/recipes/infusions/vodka/tabitha.html">
+                  Tabitha
+              </a>
+          </li>
+      
+          <li class="inactive">
+              <a href="/the-mason-jar/recipes/infusions/vodka/ursula.html">
+                  Ursula
+              </a>
+          </li>
+      
+  </ul>
+    <header class="content-wrap">
+  <h1>Essential Tools</h1>
+</header>
+
+<article class="content-wrap">
+  <p>A product is the refelction of the tools used in its creation.</p>
+<h2>Infusers</h2>
+<p>For small batches, you can&#39;t go wrong with <a href="http://crucialdetail.com/work/porthole.html">Crucial Detail&#39;s Porthole</a>. It&#39;s beautiful, a pleasure to work with and the perfect size for when you want to experiment or serve a small group.</p>
+<h2>Serving</h2>
+<h2>Notes</h2>
+
+</article>
+    <script >(function(){
+	/* Did we just livereload? */
+var log = !!(localStorage && console && console.log && true);
+if ( log && localStorage.getItem('/docpad-livereload/reloaded') === 'yes' ) {
+	localStorage.removeItem('/docpad-livereload/reloaded');
+	console.log('LiveReload completed at', new Date())
+}
+
+/* Listen for the regenerated event and perform a reload of the page when the event occurs */
+var listen = function(){
+	var primus = new Primus('/docpad-livereload');
+	primus.on('data', function(data){
+		if ( data && data.message ) {
+			if ( data.message === 'generateBefore' ) {
+				if ( log ) {
+					console.log('LiveReload started at', new Date());
+				}
+				if ( typeof document.getElementsByTagName !== 'undefined' ) {
+	document.getElementsByTagName('html')[0].className += ' wait';
+}
+			}
+			else if ( data.message === 'generateAfter' ) {
+				if ( log ) {
+					localStorage.setItem('/docpad-livereload/reloaded', 'yes');
+				}
+				document.location.reload();
+			}
+		}
+	});
+};
+	/* Inject socket into our page */
+var inject = function(){
+	var t = document.createElement('script');
+	t.type = 'text/javascript';
+	t.async = 'async';
+	t.src = '/primus/primus.js';
+	t.onload = listen;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(t, s);
+};
+	if ( typeof Primus !== 'undefined' ) {
+		listen();
+	} else {
+		inject();
+	}
+})();</script>
+</body>
+</html>
