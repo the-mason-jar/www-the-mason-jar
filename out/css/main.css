@@ -11,7 +11,7 @@ body {
 }
 
 .content-wrap {
-  width: 34em;
+  width: 38em;
   margin: 0 auto;
 }
 
@@ -20,7 +20,7 @@ body, a {
 }
 
 a:hover {
-  color: #ff8000;
+  color: #8B2500;
   text-decoration: underline;
 }
 
@@ -106,7 +106,6 @@ hr {
 }
 
 .header .author {
-  font-family: 'Merriweather', serif;
   font-variant: small-caps;
   text-transform: lowercase;
   text-rendering: auto;
@@ -116,23 +115,38 @@ hr {
 }
 
 
-/* header */
+/* nav */
 
-.header ul {
-  font-size:1em;
-  text-align: center;
+.main-nav {
+  background-color: #171717;
+  padding:12px 0 6px 0;
+}
+
+.main-nav ul {
+  font-size: .75em;
+  text-align: right;
   list-style: none;
-  margin:0;
+  margin:0 -20px 0 0;
   padding:0;
 }
 
-.header li {
-  display:inline-block;
+.main-nav li {
+  display: inline-block;
   padding:0 20px;
 }
 
-.header li a {
-  text-decoration: underline;
+.main-nav li a {
+  color: #f8f8f8;
+}
+
+.main-nav li a:hover {
+  color:#996666;
+}
+
+.main-nav .logo {
+  text-align: left;
+  float:left;
+  margin-left:-20px;
 }
 
 /* content */
@@ -162,7 +176,6 @@ footer .copy, footer .copy a {
 }
 
 .disclaimer {
-  font-family: 'Merriweather', serif;
   font-variant: small-caps;
   text-transform: lowercase;
   font-weight: 400;
