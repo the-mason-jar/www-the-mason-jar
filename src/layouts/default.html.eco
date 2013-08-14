@@ -2,7 +2,7 @@
 <head>
     <title><%= @getPreparedTitle() %></title>
     <%- @getBlock("meta").toHTML() %>
-    <%- @getBlock("styles").add(["/css/bootstrap.css", "/css/main.css"]).toHTML() %>
+    <%- @getBlock("styles").add(["/css/main.css"]).toHTML() %>
     <%- @getBlock("scripts").add(["//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js", "/js/bootstrap.js"]).toHTML() %>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
 </head>
