@@ -117,13 +117,14 @@ hr {
 
 /* nav */
 
-.nav {
-  background-color: #171717;
-  padding:12px 0 6px 0;
-  font-size: .75em;
+.site-header {
+  color: #171717;
+  height:64px;
+  padding:10px 0;
+  border-bottom:1px dotted #ccc;
 }
 
-.nav ul {
+nav ul {
   font-size: .75em;
   text-align: right;
   list-style: none;
@@ -131,23 +132,40 @@ hr {
   padding:0;
 }
 
-.nav li {
+
+nav li {
   display: inline-block;
-  /*padding:0 20px;*/
+  padding:22px 10px;
+  text-transform: uppercase;
 }
 
-.nav li a {
-  color: #f8f8f8;
+nav li a {
+  color: #171717;
+  text-decoration: none;
 }
 
-.nav li a:hover {
+nav li a:hover {
   color:#996666;
 }
 
-.nav .logo {
-  text-align: left;
-  float:left;
-  margin-left:-20px;
+.logo {
+  float: left;
+  width: 20%;
+  height: 54px;
+  padding-top:5px;
+}
+
+.logo a {
+  color:#fff;
+  display: block;
+  width: 55px;
+  height: 54px;
+
+}
+
+.logo a img {
+  width:54px;
+  height:54px;
 }
 
 /* navbar overrides */
@@ -238,3 +256,38 @@ footer .copy, footer .copy a {
   }
 }
 
+@media (max-width: 500px) {
+  .content-wrap {
+    width: auto;
+    padding: 0 1em;
+  }
+  .header {
+    margin: 1em 0;
+  }
+  .header h1 {
+    font-size: 1.4em;
+    margin-bottom: 0.6em;
+  }
+  .header .description {
+    font-size: 1em;
+  }
+
+  .site-header {
+    height:170px;
+  }
+
+  .logo {
+    text-align: center;
+    float:none;
+    margin: 0 auto 20px auto;
+    padding-top:20px;
+  }
+  nav ul {
+    margin:20px auto 0 auto;
+    text-align: center;
+  }
+  nav li {
+    padding-right:5px;
+    font-size: 12px;
+  }
+}

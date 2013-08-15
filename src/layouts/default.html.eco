@@ -3,26 +3,22 @@
     <title><%= @getPreparedTitle() %></title>
     <%- @getBlock("meta").toHTML() %>
     <%- @getBlock("styles").add(["/css/main.css"]).toHTML() %>
-    <%- @getBlock("scripts").add(["//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js", "/js/bootstrap.js"]).toHTML() %>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
 </head>
 <body>
-  <div class="navbar">
-    <div class="navbar-inner">
-      <div class="content-wrap">
-        <a class="brand" href="/">The Mason Jar</a>
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-        <ul class="nav nav-collapse collapse">
-          <li><a href="/about.html">About</a></li>
+  <div class="site-header">
+    <div class="content-wrap">
+      <div class="logo">
+        <a href="/"><img src="/images/header-brand-logo.png" alt="TMJ" /></a>
+      </div>
+      <nav role="navigation">
+        <ul class="group">
           <li><a href="/cocktails.html">Cocktails</a></li>
           <li><a href="/infusions.html">Infusions</a></li>
           <li><a href="/extras.html">Garnishes &amp; Such</a></li>
         </ul>
       </div>
+      </nav>
     </div>
   </div>
   <div class="content-wrap">
