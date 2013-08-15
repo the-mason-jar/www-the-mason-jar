@@ -135,8 +135,9 @@ nav ul {
 
 nav li {
   display: inline-block;
-  padding:22px 10px;
+  padding:22px 8px;
   text-transform: uppercase;
+  margin:0;
 }
 
 nav li a {
@@ -250,9 +251,9 @@ footer .copy, footer .copy a {
   nav ul {
     margin:20px auto 0 auto;
     text-align: center;
+    border:1px solid red;
   }
   nav li {
-    padding-right:5px;
     font-size: 12px;
   }
 }
