@@ -1,6 +1,7 @@
 <html>
 <head>
     <title><%= @getPreparedTitle() %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%- @getBlock("meta").toHTML() %>
     <%- @getBlock("styles").add(["/css/main.css"]).toHTML() %>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
