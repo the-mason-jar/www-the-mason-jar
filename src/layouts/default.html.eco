@@ -6,17 +6,18 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
 </head>
 <body>
-  <div class="main-nav">
+  <div class="site-header">
     <div class="content-wrap">
-      <ul class="logo">
-        <li><a href="/">Home</a></li>
-      </ul>
-      <ul class="nav">
-        <li><a href="/about.html">About</a></li>
-        <li><a href="/cocktails.html">Cocktails</a></li>
-        <li><a href="/infusions.html">Infusions</a></li>
-        <li><a href="/extras.html">Garnishes &amp; Such</a></li>
-      </ul>
+      <div class="logo">
+        <a href="/"><img src="/images/header-brand-logo.png" alt="TMJ" /></a>
+      </div>
+      <nav role="navigation">
+        <ul class="group">
+          <li><a href="/cocktails.html">Cocktails</a></li>
+          <li><a href="/infusions.html">Infusions</a></li>
+          <li><a href="/extras.html">Garnishes &amp; Such</a></li>
+        </ul>
+      </nav>
     </div>
   </div>
   <div class="content-wrap">
