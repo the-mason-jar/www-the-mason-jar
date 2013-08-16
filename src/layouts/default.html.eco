@@ -33,7 +33,7 @@
     <%- @getBlock("scripts").toHTML() %>
   <footer class="footer">
     <section class="copy">
-      <h4 class="disclaimer">Hipster as fuck.&trade;</h4>
+      <h4 class="disclaimer">The Mason Jar Project</h4>
       <p>Made in 2013 by D. Keith Robinson &amp; Chad Seeger</a></p>
     </section>
   </footer>

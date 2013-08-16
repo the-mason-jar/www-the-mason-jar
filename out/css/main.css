@@ -209,9 +209,9 @@ footer .copy, footer .copy a {
   font-weight: 400;
   text-rendering: auto;
   letter-spacing: 1px;
-  margin: -26px auto 36px auto;
+  margin: -28px auto 36px auto;
   background-color: #f8f8f8;
-  width: 150px;
+  width: 200px;
 }
 
 /* media queries */
