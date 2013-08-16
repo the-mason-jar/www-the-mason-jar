@@ -143,6 +143,7 @@ nav li {
 nav li a {
   color: #171717;
   text-decoration: none;
+  font-weight: bold;
 }
 
 nav li a:hover {
