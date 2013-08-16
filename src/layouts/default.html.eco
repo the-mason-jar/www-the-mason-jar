@@ -10,7 +10,7 @@
   <div class="site-header">
     <div class="content-wrap">
       <div class="logo">
-        <a href="/"><img src="/images/header-brand-logo.png" alt="TMJ" /></a>
+        <a href="/"><img src="/images/header-brand-logo.png" alt="The Mason Jar" /></a>
       </div>
       <nav role="navigation">
         <ul class="group">
@@ -28,7 +28,6 @@
     <% if @document.subtitle: %>
       <h2 class="description"><%- @document.subtitle %></h2>
     <% end %>
-
   </header>
     <%- @content %>
     <%- @getBlock("scripts").toHTML() %>
