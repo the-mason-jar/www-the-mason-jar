@@ -218,6 +218,9 @@ footer .copy, footer .copy a {
 
 @media screen and (min-width: 1600px) {
   body { font-size: 26px; }
+    .disclaimer {
+      margin: -33px auto 36px auto;
+  }
 }
 
 @media screen and (max-width: 900px) {
