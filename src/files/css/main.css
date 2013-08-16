@@ -209,7 +209,7 @@ footer .copy, footer .copy a {
   font-weight: 400;
   text-rendering: auto;
   letter-spacing: 1px;
-  margin: -23px auto 36px auto;
+  margin: -28px auto 36px auto;
   background-color: #f8f8f8;
   width: 200px;
 }
@@ -256,6 +256,9 @@ footer .copy, footer .copy a {
   }
   nav li {
     font-size: 12px;
+  }
+  .disclaimer {
+      margin: -23px auto 36px auto;
   }
 
 }
