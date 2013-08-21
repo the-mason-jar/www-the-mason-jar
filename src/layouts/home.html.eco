@@ -1,0 +1,65 @@
+<html>
+<head>
+    <title><%= @getPreparedTitle() %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%- @getBlock("meta").toHTML() %>
+    <%- @getBlock("styles").add(["/css/main.css"]).toHTML() %>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+</head>
+<body>
+  <div class="site-header">
+    <div class="content-wrap">
+      <div class="logo">
+        <a href="/"><img src="/images/header-brand-logo.png" alt="The Mason Jar" /></a>
+      </div>
+      <nav role="navigation">
+        <ul class="group">
+          <li><a href="/cocktails.html">Cocktails</a></li>
+          <li><a href="/infusions.html">Infusions</a></li>
+          <li><a href="/extras.html">Garnishes</a></li>
+        </ul>
+      </div>
+      </nav>
+    </div>
+  </div>
+  <div class="content-wrap">
+  <header class="header">
+    <h1 class="main-title"><%= @getPageTitle() %></h1>
+    <% if @document.subtitle: %>
+      <h2 class="description"><%- @document.subtitle %></h2>
+    <% end %>
+  </header>
+    <section class="main-copy">
+      <%- @content %>
+    </section>
+    <section class="sidebar-lists">
+
+      <h3 class="sidebar-description">Featured Cocktail: <% for page in @getCollection("featured").toJSON(): %>
+            <a href="<%= page.url %>">
+                <%= page.title %>
+            </a>
+          <% end %>
+      </h2>
+
+      <h3 class="sidebar-description">New Recipes</h3>
+
+      <ul id="latest">
+          <% for page in @getCollection("allCocktails").toJSON(): %>
+              <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
+                  <a href="<%= page.url %>">
+                      <%= page.title %>
+                  </a>
+              </li>
+          <% end %>
+    </ul>
+    </section>
+    <%- @getBlock("scripts").toHTML() %>
+  <footer class="footer">
+    <section class="copy">
+      <h4 class="disclaimer">The Mason Jar Project</h4>
+      <p>Made in 2013 by D. Keith Robinson &amp; Chad Seeger</a></p>
+    </section>
+  </footer>
+  </div>
+</body>
+</html>

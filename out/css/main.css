@@ -91,6 +91,7 @@ hr {
 
 .header {
   margin: 3em 0 1em;
+  border-bottom: 1px dashed #d2d2d2;
 }
 
 .header h1 {
@@ -179,6 +180,30 @@ nav li a:hover {
 
 /* content */
 
+.main-copy {
+  width:65%;
+  float:left;
+  font-size:.875em;
+  padding-bottom: 60px;
+}
+
+.sidebar-lists {
+  width: 25%;
+  float: right;
+  text-align: left;
+  font-size: .675em;
+}
+
+.sidebar-description {
+  text-align: left;
+}
+
+#latest {
+  margin:0;
+  text-align: left;
+  list-style: none;
+}
+
 #directory {
   margin:0;
   text-align: center;
@@ -190,6 +215,7 @@ nav li a:hover {
 footer {
   margin: 3em 0;
   border-top: 1px dashed #d2d2d2;
+  clear:both;
 }
 
 footer .copy {
@@ -263,6 +289,32 @@ footer .copy, footer .copy a {
   nav li {
     font-size: 12px;
   }
+
+  .main-copy {
+    width: 100%;
+    float:none;
+    font-size:.875em;
+    padding-bottom: 0;
+    text-align: center;
+  }
+
+  .sidebar-lists {
+    width: 100%;
+    float: none;
+    text-align: center;
+    font-size: .775em;
+  }
+
+  .sidebar-description {
+  text-align: center;
+}
+
+  #latest {
+    margin:0;
+    text-align: center;
+    list-style: none;
+  }
+
   .disclaimer {
       margin: -23px auto 36px auto;
   }
