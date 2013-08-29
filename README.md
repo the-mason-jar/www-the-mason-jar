@@ -13,7 +13,7 @@ To build the site to pull in new changes in the [primary recipe repo](https://gi
 5. Run `docpad build` or, if that doesn't work `docpad run`
 6. Add and commit the changes `git add` then `git commit -am`
 7. Push to Github `git push origin master`
-8. Push to Heroku `git pull heroku master`
+8. Push to Heroku `git push heroku master`
 
 
 How to handle a tricky merge:
@@ -21,5 +21,5 @@ How to handle a tricky merge:
 1. The "out" folder will usually have conflicts you'll need to merge manually
 2. Take care of any conflicts in the "src" folder
 3. Run `docpad build` or, if that doesn't work `docpad run`
-4. Add/commit the changes
+4. Add and commit the changes `git add` then `git commit -am`
 5. Should be good to go
