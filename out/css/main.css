@@ -101,6 +101,12 @@ hr {
   margin: 0;
 }
 
+.header img {
+  height:248px;
+  width:307px;
+  margin-bottom:20px;
+}
+
 .header a, .header a:hover {
   text-decoration: none;
   color: #171717;
@@ -154,7 +160,6 @@ nav li a:hover {
 
 .logo {
   float: left;
-  width: 20%;
   height: 54px;
   padding-top:5px;
 }
@@ -162,13 +167,13 @@ nav li a:hover {
 .logo a {
   color:#fff;
   display: block;
-  width: 55px;
+  width: 107px;
   height: 54px;
 
 }
 
 .logo a img {
-  width:54px;
+  width:107px;
   height:54px;
 }
 
@@ -264,26 +269,23 @@ footer .copy, footer .copy a {
   .header {
     margin: 1em 0;
   }
-  .header h1 {
-    font-size: 1.4em;
+
+  .header img {
+    height: 198px;
+    width: 257px;
     margin-bottom: 0.6em;
-  }
-  .header .description {
-    font-size: 1em;
   }
 
   .site-header {
-    height:140px;
+    height:60px;
   }
 
   .logo {
-    text-align: center;
-    float:none;
-    margin: 0 auto 20px auto;
-    padding-top:20px;
+   display:none;
   }
+
   nav ul {
-    margin:20px auto 0 auto;
+    margin:0 auto;
     text-align: center;
   }
   nav li {

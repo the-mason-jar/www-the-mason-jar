@@ -24,10 +24,7 @@
   </div>
   <div class="content-wrap">
   <header class="header">
-    <h1 class="main-title"><%= @getPageTitle() %></h1>
-    <% if @document.subtitle: %>
-      <h2 class="description"><%- @document.subtitle %></h2>
-    <% end %>
+    <h1 class="main-title"><img src="/images/primary-brand-logo.png" alt="The Mason Jar" /></h1>
   </header>
     <section class="main-copy">
       <%- @content %>
