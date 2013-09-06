@@ -31,6 +31,17 @@
     </section>
     <section class="sidebar-lists">
 
+      <h3 class="sidebar-description">Choose your poison:</h3>
+
+      <select ONCHANGE="location = this.options[this.selectedIndex].value;">
+        <option value="">----------</option>
+        <% for tag, data of @getTagCloud(): %>
+            <option value="<%= data.url %>">
+                <%= tag %>
+            </option>
+        <% end %>
+      </select>
+
       <h3 class="sidebar-description">Featured Cocktail: <% for page in @getCollection("featured").toJSON(): %>
             <a href="<%= page.url %>">
                 <%= page.title %>

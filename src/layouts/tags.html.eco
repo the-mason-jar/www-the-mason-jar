@@ -1,9 +1,9 @@
 ---
 layout: default
 ---
-<h1>Pages tagged with '<%= @document.tag %>'</h1>
+<h2 class="description">Category: <%= @document.tag %>.</h2>
 
-<ul>
+<ul id="directory">
 <% for doc in @getCollection('documents').findAll({tags: '$in': @document.tag}).toJSON(): %>
     <li><a href="<%= doc.url %>"><%= doc.title %></a></li>
 <% end %>

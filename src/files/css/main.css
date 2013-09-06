@@ -203,6 +203,11 @@ nav li a:hover {
   text-align: left;
 }
 
+select {
+  width:100%;
+  font-size: 50px;
+}
+
 #latest {
   margin:0;
   text-align: left;
