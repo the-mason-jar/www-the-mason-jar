@@ -18,7 +18,6 @@
           <li><a href="/infusions.html">Infusions</a></li>
           <li><a href="/extras.html">Garnishes</a></li>
         </ul>
-      </div>
       </nav>
     </div>
   </div>
@@ -30,11 +29,8 @@
       <%- @content %>
     </section>
     <section class="sidebar-lists">
-
-      <h3 class="sidebar-description">Choose your poison:</h3>
-
       <select ONCHANGE="location = this.options[this.selectedIndex].value;">
-        <option value="">----------</option>
+        <option value="">Choose your poison</option>
         <% for tag, data of @getTagCloud(): %>
             <option value="<%= data.url %>">
                 <%= tag %>
