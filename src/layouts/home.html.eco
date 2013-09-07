@@ -2,10 +2,10 @@
 <head>
     <title><%= @getPreparedTitle() %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-114.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-144.png" />
-    <link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon.png" />
     <%- @getBlock("meta").toHTML() %>
     <%- @getBlock("styles").add(["/css/main.css"]).toHTML() %>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
