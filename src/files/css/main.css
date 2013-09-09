@@ -112,13 +112,15 @@ hr {
   color: #171717;
 }
 
-.header .author {
-  font-variant: small-caps;
-  text-transform: lowercase;
-  text-rendering: auto;
+.header .mixologist {
+  font-size: 1em;
+  font-style: italic;
   text-align: center;
-  font-weight: 400;
-  letter-spacing: 1px;
+  margin-top: -0.3em;
+}
+
+.header .mixologist a {
+  text-decoration: underline;
 }
 
 

@@ -27,6 +27,8 @@
     <h1 class="main-title"><%= @getPageTitle() %></h1>
     <% if @document.subtitle: %>
       <h2 class="description"><%- @document.subtitle %></h2>
+    <% else if @document.mixologist: %>
+      <h2 class="mixologist">Submitted by: <a href="<%= @document.mixologist.github %>"><%= @document.mixologist.name %></a></h2>
     <% end %>
   </header>
     <%- @content %>
