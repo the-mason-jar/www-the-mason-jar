@@ -4,6 +4,14 @@
 # Define the DocPad Configuration
 docpadConfig = {
     # ...
+
+    # Documents Paths
+        # An array of paths which contents will be treated as documents
+        # If it is a relative path, it will have the resolved `srcPath` prepended to it
+        documentsPaths: [  # default
+            'documents/the-mason-jar/recipes', 'pages'
+        ]
+
     templateData:
         site:
             title: "The Mason Jar"
