@@ -221,6 +221,11 @@ select {
   list-style: none;
 }
 
+.prose-edit {
+  font-size: .75em;
+  text-align: center;
+}
+
 /* page footer */
 
 footer {
