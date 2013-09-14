@@ -1,0 +1,116 @@
+<html>
+<head>
+    <title>Poet's Dream | The Mason Jar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-Powered-By" content="DocPad v6.50.0"/>
+    <style >html.wait {
+	cursor: wait !important;
+	opacity: 0;
+	transition: opacity 0.5s ease;
+}</style><link  rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+</head>
+<body>
+  <div class="site-header">
+    <div class="content-wrap">
+      <div class="logo">
+        <a href="/"><img src="/images/header-brand-logo.png" alt="The Mason Jar" /></a>
+      </div>
+      <nav role="navigation">
+        <ul class="group">
+          <li><a href="/cocktails.html">Cocktails</a></li>
+          <li><a href="/infusions.html">Infusions</a></li>
+          <li><a href="/extras.html">Garnishes</a></li>
+        </ul>
+      </div>
+      </nav>
+    </div>
+  </div>
+  <div class="content-wrap">
+  <header class="header">
+    <h1 class="main-title">Poet's Dream</h1>
+    
+      <h2 class="mixologist">Submitted by: <a href="https://github.com/mattonrails">Matthew Conway</a></h2>
+    
+  </header>
+    <article>
+  <p>There are more than a few variations on this cocktail, but this one will surely
+endow its drinker with eloquence.</p>
+<h2>Ingredients</h2>
+<ul>
+<li>2 ounces gin (bold, prominent juniper)</li>
+<li>3/4 ounce dry vermouth</li>
+<li>1/4 ounce Benedictine</li>
+<li>2 dashes orange bitters</li>
+<li>1 lemon twist</li>
+</ul>
+<h2>Technique</h2>
+<ol>
+<li>Combine all ingredients in a mixing glass</li>
+<li>Fill with ice</li>
+<li>Stir until cold</li>
+<li>Strain into a chilled coupe or martini glass</li>
+<li>Garnish with the twist</li>
+<li>Wax poetic</li>
+</ol>
+<h2>Notes</h2>
+<ul>
+<li>Adapted by Meaghan Dorman; <a href="http://thelanternskeep.com/">Lantern&#39;s Keep</a>, New York</li>
+</ul>
+
+</article>
+    <script >(function(){
+	/* Did we just livereload? */
+var log = !!(localStorage && console && console.log && true);
+if ( log && localStorage.getItem('/docpad-livereload/reloaded') === 'yes' ) {
+	localStorage.removeItem('/docpad-livereload/reloaded');
+	console.log('LiveReload completed at', new Date())
+}
+
+/* Listen for the regenerated event and perform a reload of the page when the event occurs */
+var listen = function(){
+	var primus = new Primus('/docpad-livereload');
+	primus.on('data', function(data){
+		if ( data && data.message ) {
+			if ( data.message === 'generateBefore' ) {
+				if ( log ) {
+					console.log('LiveReload started at', new Date());
+				}
+				if ( typeof document.getElementsByTagName !== 'undefined' ) {
+	document.getElementsByTagName('html')[0].className += ' wait';
+}
+			}
+			else if ( data.message === 'generateAfter' ) {
+				if ( log ) {
+					localStorage.setItem('/docpad-livereload/reloaded', 'yes');
+				}
+				document.location.reload();
+			}
+		}
+	});
+};
+	/* Inject socket into our page */
+var inject = function(){
+	var t = document.createElement('script');
+	t.type = 'text/javascript';
+	t.async = 'async';
+	t.src = '/primus/primus.js';
+	t.onload = listen;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(t, s);
+};
+	if ( typeof Primus !== 'undefined' ) {
+		listen();
+	} else {
+		inject();
+	}
+})();</script>
+  <footer class="footer">
+    <section class="copy">
+      <h4 class="disclaimer">The Mason Jar Project</h4>
+      <p>Made in 2013 by D. Keith Robinson &amp; Chad Seeger</a></p>
+    </section>
+  </footer>
+  </div>
+</body>
+</html>
