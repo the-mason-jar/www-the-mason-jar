@@ -1,6 +1,6 @@
 /**
  * @license
- * Lo-Dash 2.0.0 (Custom Build) <http://lodash.com/>
+ * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
  * Build: `lodash modern -o ./dist/lodash.js`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
@@ -67,7 +67,7 @@
   var reNoMatch = /($^)/;
 
   /** Used to detect functions containing a `this` reference */
-  var reThis = (reThis = /\bthis\b/) && reThis.test(runInContext) && reThis;
+  var reThis = /\bthis\b/;
 
   /** Used to match unescaped characters in compiled string literals */
   var reUnescapedString = /['\n\r\t\u2028\u2029\\]/g;
@@ -101,6 +101,21 @@
   cloneableClasses[numberClass] = cloneableClasses[objectClass] =
   cloneableClasses[regexpClass] = cloneableClasses[stringClass] = true;
 
+  /** Used as an internal `_.debounce` options object */
+  var debounceOptions = {
+    'leading': false,
+    'maxWait': 0,
+    'trailing': false
+  };
+
+  /** Used as the property descriptor for `__bindData__` */
+  var descriptor = {
+    'configurable': false,
+    'enumerable': false,
+    'value': null,
+    'writable': false
+  };
+
   /** Used to determine if values are of the language type Object */
   var objectTypes = {
     'boolean': false,
@@ -126,10 +141,13 @@
   var root = (objectTypes[typeof window] && window) || this;
 
   /** Detect free variable `exports` */
-  var freeExports = objectTypes[typeof exports] && exports;
+  var freeExports = objectTypes[typeof exports] && exports && !exports.nodeType && exports;
 
   /** Detect free variable `module` */
-  var freeModule = objectTypes[typeof module] && module && module.exports == freeExports && module;
+  var freeModule = objectTypes[typeof module] && module && !module.nodeType && module;
+
+  /** Detect the popular CommonJS extension `module.exports` */
+  var moduleExports = freeModule && freeModule.exports === freeExports && freeExports;
 
   /** Detect free variable `global` from Node.js or Browserified code and use it as `root` */
   var freeGlobal = objectTypes[typeof global] && global;
@@ -189,7 +207,7 @@
   }
 
   /**
-   * Adds a given `value` to the corresponding cache object.
+   * Adds a given value to the corresponding cache object.
    *
    * @private
    * @param {*} value The value to add to the cache.
@@ -268,9 +286,11 @@
     var index = -1,
         length = array.length,
         first = array[0],
+        mid = array[(length / 2) | 0],
         last = array[length - 1];
 
-    if (first && typeof first == 'object' && last && typeof last == 'object') {
+    if (first && typeof first == 'object' &&
+        mid && typeof mid == 'object' && last && typeof last == 'object') {
       return false;
     }
     var cache = getObject();
@@ -319,23 +339,17 @@
     return objectPool.pop() || {
       'array': null,
       'cache': null,
-      'configurable': false,
       'criteria': null,
-      'enumerable': false,
       'false': false,
       'index': 0,
-      'leading': false,
-      'maxWait': 0,
       'null': false,
       'number': null,
       'object': null,
       'push': null,
       'string': null,
-      'trailing': false,
       'true': false,
       'undefined': false,
-      'value': null,
-      'writable': false
+      'value': null
     };
   }
 
@@ -409,7 +423,7 @@
   /*--------------------------------------------------------------------------*/
 
   /**
-   * Create a new `lodash` function using the given `context` object.
+   * Create a new `lodash` function using the given context object.
    *
    * @static
    * @memberOf _
@@ -512,8 +526,8 @@
     /*--------------------------------------------------------------------------*/
 
     /**
-     * Creates a `lodash` object which wraps the given value to enable method
-     * chaining.
+     * Creates a `lodash` object which wraps the given value to enable intuitive
+     * method chaining.
      *
      * In addition to Lo-Dash methods, wrappers also have the following `Array` methods:
      * `concat`, `join`, `pop`, `push`, `reverse`, `shift`, `slice`, `sort`, `splice`,
@@ -546,6 +560,8 @@
      *
      * The wrapper functions `first` and `last` return wrapped values when `n` is
      * provided, otherwise they return unwrapped values.
+     *
+     * Explicit chaining can be enabled by using the `_.chain` method.
      *
      * @name _
      * @constructor
@@ -611,6 +627,15 @@
      * @type boolean
      */
     support.fastBind = nativeBind && !isV8;
+
+    /**
+     * Detect if functions can be decompiled by `Function#toString`
+     * (all but PS3 and older Opera mobile browsers & avoided in Windows 8 apps).
+     *
+     * @memberOf _.support
+     * @type boolean
+     */
+    support.funcDecomp = !reNative.test(context.WinRTError) && reThis.test(runInContext);
 
     /**
      * Detect if `Function#name` is supported (all but IE).
@@ -689,64 +714,62 @@
      *
      * @private
      * @param {*} value The value to clone.
-     * @param {boolean} [deep=false] A flag to indicate a deep clone.
+     * @param {boolean} [deep=false] Specify a deep clone.
      * @param {Function} [callback] The function to customize cloning values.
      * @param {Array} [stackA=[]] Tracks traversed source objects.
      * @param {Array} [stackB=[]] Associates clones with source counterparts.
-     * @returns {*} Returns the cloned `value`.
+     * @returns {*} Returns the cloned value.
      */
     function baseClone(value, deep, callback, stackA, stackB) {
-      var result = value;
-
       if (callback) {
-        result = callback(result);
+        var result = callback(value);
         if (typeof result != 'undefined') {
           return result;
         }
-        result = value;
       }
       // inspect [[Class]]
-      var isObj = isObject(result);
+      var isObj = isObject(value);
       if (isObj) {
-        var className = toString.call(result);
+        var className = toString.call(value);
         if (!cloneableClasses[className]) {
-          return result;
+          return value;
         }
-        var isArr = isArray(result);
-      }
-      // shallow clone
-      if (!isObj || !deep) {
-        return isObj
-          ? (isArr ? slice(result) : assign({}, result))
-          : result;
-      }
-      var ctor = ctorByClass[className];
-      switch (className) {
-        case boolClass:
-        case dateClass:
-          return new ctor(+result);
+        var ctor = ctorByClass[className];
+        switch (className) {
+          case boolClass:
+          case dateClass:
+            return new ctor(+value);
 
-        case numberClass:
-        case stringClass:
-          return new ctor(result);
+          case numberClass:
+          case stringClass:
+            return new ctor(value);
 
-        case regexpClass:
-          return ctor(result.source, reFlags.exec(result));
-      }
-      // check for circular references and return corresponding clone
-      var initedStack = !stackA;
-      stackA || (stackA = getArray());
-      stackB || (stackB = getArray());
-
-      var length = stackA.length;
-      while (length--) {
-        if (stackA[length] == value) {
-          return stackB[length];
+          case regexpClass:
+            result = ctor(value.source, reFlags.exec(value));
+            result.lastIndex = value.lastIndex;
+            return result;
         }
+      } else {
+        return value;
       }
-      // init cloned object
-      result = isArr ? ctor(result.length) : {};
+      var isArr = isArray(value);
+      if (deep) {
+        // check for circular references and return corresponding clone
+        var initedStack = !stackA;
+        stackA || (stackA = getArray());
+        stackB || (stackB = getArray());
 
+        var length = stackA.length;
+        while (length--) {
+          if (stackA[length] == value) {
+            return stackB[length];
+          }
+        }
+        result = isArr ? ctor(value.length) : {};
+      }
+      else {
+        result = isArr ? slice(value) : assign({}, value);
+      }
       // add array properties assigned by `RegExp#exec`
       if (isArr) {
         if (hasOwnProperty.call(value, 'index')) {
@@ -755,6 +778,10 @@
         if (hasOwnProperty.call(value, 'input')) {
           result.input = value.input;
         }
+      }
+      // exit for shallow clone
+      if (!deep) {
+        return result;
       }
       // add the source value to the stack of traversed objects
       // and associate it with its clone
@@ -799,7 +826,7 @@
         }
         if (support.funcNames || !bindData) {
           // checks if `func` references the `this` keyword and stores the result
-          bindData = !reThis || reThis.test(source);
+          bindData = !support.funcDecomp || reThis.test(source);
           setBindData(func, bindData);
         }
       }
@@ -842,9 +869,21 @@
 
       while (++index < length) {
         var value = array[index];
-        // recursively flatten arrays (susceptible to call stack limits)
-        if (value && typeof value == 'object' && (isArray(value) || isArguments(value))) {
-          push.apply(result, isShallow ? value : baseFlatten(value, isShallow, isArgArrays));
+
+        if (value && typeof value == 'object' && typeof value.length == 'number'
+            && (isArray(value) || isArguments(value))) {
+          // recursively flatten arrays (susceptible to call stack limits)
+          if (!isShallow) {
+            value = baseFlatten(value, isShallow, isArgArrays);
+          }
+          var valIndex = -1,
+              valLength = value.length,
+              resIndex = result.length;
+
+          result.length += valLength;
+          while (++valIndex < valLength) {
+            result[resIndex++] = value[valIndex];
+          }
         } else if (!isArgArrays) {
           result.push(value);
         }
@@ -1293,6 +1332,17 @@
     function createObject(prototype) {
       return isObject(prototype) ? nativeCreate(prototype) : {};
     }
+    // fallback for browsers without `Object.create`
+    if (!nativeCreate) {
+      createObject = function(prototype) {
+        if (isObject(prototype)) {
+          noop.prototype = prototype;
+          var result = new noop;
+          noop.prototype = null;
+        }
+        return result || {};
+      };
+    }
 
     /**
      * Used by `escape` to convert characters to HTML entities.
@@ -1325,11 +1375,9 @@
      * @param {Function} func The function to set data on.
      * @param {*} value The value to set.
      */
-    var setBindData = function(func, value) {
-      var descriptor = getObject();
+    var setBindData = !defineProperty ? noop : function(func, value) {
       descriptor.value = value;
       defineProperty(func, '__bindData__', descriptor);
-      releaseObject(descriptor);
     };
 
     /**
@@ -1390,7 +1438,8 @@
      * // => false
      */
     function isArguments(value) {
-      return (value && typeof value == 'object') ? toString.call(value) == argsClass : false;
+      return value && typeof value == 'object' && typeof value.length == 'number' &&
+        toString.call(value) == argsClass || false;
     }
 
     /**
@@ -1411,7 +1460,8 @@
      * // => true
      */
     var isArray = nativeIsArray || function(value) {
-      return (value && typeof value == 'object') ? toString.call(value) == arrayClass : false;
+      return value && typeof value == 'object' && typeof value.length == 'number' &&
+        toString.call(value) == arrayClass || false;
     };
 
     /**
@@ -1548,10 +1598,10 @@
      * @memberOf _
      * @category Objects
      * @param {*} value The value to clone.
-     * @param {boolean} [deep=false] A flag to indicate a deep clone.
+     * @param {boolean} [deep=false] Specify a deep clone.
      * @param {Function} [callback] The function to customize cloning values.
      * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {*} Returns the cloned `value`.
+     * @returns {*} Returns the cloned value.
      * @example
      *
      * var stooges = [
@@ -1605,7 +1655,7 @@
      * @param {*} value The value to deep clone.
      * @param {Function} [callback] The function to customize cloning values.
      * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {*} Returns the deep cloned `value`.
+     * @returns {*} Returns the deep cloned value.
      * @example
      *
      * var stooges = [
@@ -3209,10 +3259,11 @@
     }
 
     /**
-     * Retrieves the maximum value of an array. If a callback is provided it
-     * will be executed for each value in the array to generate the criterion by
-     * which the value is ranked. The callback is bound to `thisArg` and invoked
-     * with three arguments; (value, index, collection).
+     * Retrieves the maximum value of a collection. If the collection is empty or
+     * falsey `-Infinity` is returned. If a callback is provided it will be executed
+     * for each value in the collection to generate the criterion by which the value
+     * is ranked. The callback is bound to `thisArg` and invoked with three
+     * arguments; (value, index, collection).
      *
      * If a property name is provided for `callback` the created "_.pluck" style
      * callback will return the property value of the given element.
@@ -3278,10 +3329,11 @@
     }
 
     /**
-     * Retrieves the minimum value of an array. If a callback is provided it
-     * will be executed for each value in the array to generate the criterion by
-     * which the value is ranked. The callback is bound to `thisArg` and invoked
-     * with three arguments; (value, index, collection).
+     * Retrieves the minimum value of a collection. If the collection is empty or
+     * falsey `Infinity` is returned. If a callback is provided it will be executed
+     * for each value in the collection to generate the criterion by which the value
+     * is ranked. The callback is bound to `thisArg` and invoked with three
+     * arguments; (value, index, collection).
      *
      * If a property name is provided for `callback` the created "_.pluck" style
      * callback will return the property value of the given element.
@@ -3745,16 +3797,16 @@
      * @category Collections
      * @param {Array|Object|string} collection The collection to iterate over.
      * @param {Object} properties The object of property values to filter by.
-     * @returns {Array} Returns a new array of elements that have the given `properties`.
+     * @returns {Array} Returns a new array of elements that have the given properties.
      * @example
      *
      * var stooges = [
      *   { 'name': 'curly', 'age': 30, 'quotes': ['Oh, a wise guy, eh?', 'Poifect!'] },
-     *   { 'name': 'moe', 'age': '40', 'quotes': ['Spread out!', 'You knucklehead!'] }
+     *   { 'name': 'moe', 'age': 40, 'quotes': ['Spread out!', 'You knucklehead!'] }
      * ];
      *
      * _.where(stooges, { 'age': 40 });
-     * // => [{ 'name': 'moe', 'age': '40', 'quotes': ['Spread out!', 'You knucklehead!'] }]
+     * // => [{ 'name': 'moe', 'age': 40, 'quotes': ['Spread out!', 'You knucklehead!'] }]
      *
      * _.where(stooges, { 'quotes': ['Poifect!'] });
      * // => [{ 'name': 'curly', 'age': 30, 'quotes': ['Oh, a wise guy, eh?', 'Poifect!'] }]
@@ -4906,7 +4958,7 @@
      */
     function compose() {
       var funcs = arguments,
-          length = funcs.length || 1;
+          length = funcs.length;
 
       while (length--) {
         if (!isFunction(funcs[length])) {
@@ -5173,7 +5225,7 @@
       return setTimeout(function() { func.apply(undefined, args); }, 1);
     }
     // use `setImmediate` if available in Node.js
-    if (isV8 && freeModule && typeof setImmediate == 'function') {
+    if (isV8 && moduleExports && typeof setImmediate == 'function') {
       defer = function(func) {
         if (!isFunction(func)) {
           throw new TypeError;
@@ -5391,13 +5443,11 @@
         leading = 'leading' in options ? options.leading : leading;
         trailing = 'trailing' in options ? options.trailing : trailing;
       }
-      options = getObject();
-      options.leading = leading;
-      options.maxWait = wait;
-      options.trailing = trailing;
+      debounceOptions.leading = leading;
+      debounceOptions.maxWait = wait;
+      debounceOptions.trailing = trailing;
 
-      var result = debounce(func, wait, options);
-      releaseObject(options);
+      var result = debounce(func, wait, debounceOptions);
       return result;
     }
 
@@ -5512,9 +5562,12 @@
 
             push.apply(args, arguments);
             var result = func.apply(object, args);
-            return (value && typeof value == 'object' && value === result)
-              ? this
-              : new ctor(result);
+            if (value && typeof value == 'object' && value === result) {
+              return this;
+            }
+            result = new ctor(result);
+            result.__chain__ = this.__chain__;
+            return result;
           };
         }
       });
@@ -5538,7 +5591,7 @@
     }
 
     /**
-     * Converts the given `value` into an integer of the specified `radix`.
+     * Converts the given value into an integer of the specified radix.
      * If `radix` is `undefined` or `0` a `radix` of `10` is used unless the
      * `value` is a hexadecimal, in which case a `radix` of `16` is used.
      *
@@ -5564,36 +5617,57 @@
     /**
      * Produces a random number between `min` and `max` (inclusive). If only one
      * argument is provided a number between `0` and the given number will be
-     * returned.
+     * returned. If `floating` is truey or either `min` or `max` are floats a
+     * floating-point number will be returned instead of an integer.
      *
      * @static
      * @memberOf _
      * @category Utilities
      * @param {number} [min=0] The minimum possible value.
      * @param {number} [max=1] The maximum possible value.
+     * @param {boolean} [floating=false] Specify returning a floating-point number.
      * @returns {number} Returns a random number.
      * @example
      *
      * _.random(0, 5);
-     * // => a number between 0 and 5
+     * // => an integer between 0 and 5
      *
      * _.random(5);
-     * // => also a number between 0 and 5
+     * // => also an integer between 0 and 5
+     *
+     * _.random(5, true);
+     * // => a floating-point number between 0 and 5
+     *
+     * _.random(1.2, 5.2);
+     * // => a floating-point number between 1.2 and 5.2
      */
-    function random(min, max) {
-      if (min == null && max == null) {
+    function random(min, max, floating) {
+      var noMin = min == null,
+          noMax = max == null;
+
+      if (floating == null) {
+        if (typeof min == 'boolean' && noMax) {
+          floating = min;
+          min = 1;
+        }
+        else if (!noMax && typeof max == 'boolean') {
+          floating = max;
+          noMax = true;
+        }
+      }
+      if (noMin && noMax) {
         max = 1;
       }
       min = +min || 0;
-      if (max == null) {
+      if (noMax) {
         max = min;
         min = 0;
       } else {
         max = +max || 0;
       }
       var rand = nativeRandom();
-      return (min % 1 || max % 1)
-        ? min + nativeMin(rand * (max - min + parseFloat('1e-' + ((rand +'').length - 1))), max)
+      return (floating || min % 1 || max % 1)
+        ? nativeMin(min + (rand * (max - min + parseFloat('1e-' + ((rand +'').length - 1)))), max)
         : min + floor(rand * (max - min + 1));
     }
 
@@ -5691,8 +5765,8 @@
      * // => 'hello mustache!'
      *
      * // using the `imports` option to import jQuery
-     * var list = '<% $.each(people, function(name) { %><li><%= name %></li><% }); %>';
-     * _.template(list, { 'people': ['moe', 'larry'] }, { 'imports': { '$': jQuery });
+     * var list = '<% $.each(people, function(name) { %><li><%- name %></li><% }); %>';
+     * _.template(list, { 'people': ['moe', 'larry'] }, { 'imports': { '$': jQuery } });
      * // => '<li>moe</li><li>larry</li>'
      *
      * // using the `sourceURL` option to specify a custom sourceURL for the template
@@ -5810,7 +5884,7 @@
       if (data) {
         return result(data);
       }
-      // provide the compiled function's source via its `toString` method, in
+      // provide the compiled function's source by its `toString` method, in
       // supported environments, or the `source` property as a convenience for
       // inlining compiled templates during the build process
       result.source = source;
@@ -5895,7 +5969,8 @@
     /*--------------------------------------------------------------------------*/
 
     /**
-     * Creates a `lodash` object that wraps the given `value`.
+     * Creates a `lodash` object that wraps the given value with explicit
+     * method chaining enabled.
      *
      * @static
      * @memberOf _
@@ -5911,9 +5986,10 @@
      * ];
      *
      * var youngest = _.chain(stooges)
-     *     .sortBy(function(stooge) { return stooge.age; })
+     *     .sortBy('age')
      *     .map(function(stooge) { return stooge.name + ' is ' + stooge.age; })
-     *     .first();
+     *     .first()
+     *     .value();
      * // => 'moe is 40'
      */
     function chain(value) {
@@ -5950,7 +6026,7 @@
     }
 
     /**
-     * Enables method chaining on the wrapper object.
+     * Enables explicit method chaining on the wrapper object.
      *
      * @name chain
      * @memberOf _
@@ -5958,11 +6034,21 @@
      * @returns {*} Returns the wrapper object.
      * @example
      *
-     * var sum = _([1, 2, 3])
-     *     .chain()
-     *     .reduce(function(sum, num) { return sum + num; })
-     *     .value()
-     * // => 6`
+     * var stooges = [
+     *   { 'name': 'moe', 'age': 40 },
+     *   { 'name': 'larry', 'age': 50 }
+     * ];
+     *
+     * // without explicit chaining
+     * _(stooges).first();
+     * // => { 'name': 'moe', 'age': 40 }
+     *
+     * // with explicit chaining
+     * _(stooges).chain()
+     *   .first()
+     *   .pick('age')
+     *   .value()
+     * // => { 'age': 40 }
      */
     function wrapperChain() {
       this.__chain__ = true;
@@ -6196,7 +6282,7 @@
      * @memberOf _
      * @type string
      */
-    lodash.VERSION = '2.0.0';
+    lodash.VERSION = '2.2.1';
 
     // add "Chaining" functions to the wrapper
     lodash.prototype.chain = wrapperChain;
@@ -6247,7 +6333,7 @@
     // Expose Lo-Dash to the global object even when an AMD loader is present in
     // case Lo-Dash was injected by a third-party script and not intended to be
     // loaded as a module. The global assignment can be reverted in the Lo-Dash
-    // module via its `noConflict()` method.
+    // module by its `noConflict()` method.
     root._ = _;
 
     // define as an anonymous module so, through path mapping, it can be
@@ -6257,12 +6343,12 @@
     });
   }
   // check for `exports` after `define` in case a build optimizer adds an `exports` object
-  else if (freeExports && !freeExports.nodeType) {
-    // in Node.js or RingoJS v0.8.0+
-    if (freeModule) {
+  else if (freeExports && freeModule) {
+    // in Node.js or RingoJS
+    if (moduleExports) {
       (freeModule.exports = _)._ = _;
     }
-    // in Narwhal or RingoJS v0.7.0-
+    // in Narwhal or Rhino -require
     else {
       freeExports._ = _;
     }
