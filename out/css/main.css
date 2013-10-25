@@ -185,16 +185,11 @@ nav li a:hover {
   text-decoration: underline;
 }
 
-/* drink images */
-
-.drink-image {
-  height:250px;
-  width:250px;
-  float:right;
-  margin:0 0 0 15px;
-}
-
 /* content */
+
+.content {
+  float:left;
+}
 
 .main-copy {
   width:65%;
@@ -233,6 +228,18 @@ select {
 .prose-edit {
   font-size: .75em;
   text-align: center;
+}
+
+/* drink images */
+
+.drink-image {
+  float:right;
+  margin:0 0 0 15px;
+}
+
+.drink-image img {
+  height:250px;
+  width:250px;
 }
 
 /* page footer */
@@ -312,14 +319,19 @@ footer .copy, footer .copy a {
     font-size: 12px;
   }
 
+
   .drink-image {
-  height:250px;
-  width:250px;
-  float:none;
-  margin:15px auto 0;
-  position:absolute;
-  bottom:0;
-}
+    width:100%;
+    height:200px;
+    margin:0 0 20px 0;
+    overflow:hidden;
+  }
+
+  .drink-image img {
+    width:320px;
+    height:320px;
+    text-align: center;
+  }
 
   .main-copy {
     width: 100%;
