@@ -185,7 +185,7 @@ nav li a:hover {
   text-decoration: underline;
 }
 
-/* images */
+/* drink images */
 
 .drink-image {
   height:250px;
@@ -311,6 +311,15 @@ footer .copy, footer .copy a {
   nav li {
     font-size: 12px;
   }
+
+  .drink-image {
+  height:250px;
+  width:250px;
+  float:none;
+  margin:15px auto 0;
+  position:absolute;
+  bottom:0;
+}
 
   .main-copy {
     width: 100%;
