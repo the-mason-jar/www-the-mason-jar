@@ -185,6 +185,15 @@ nav li a:hover {
   text-decoration: underline;
 }
 
+/* images */
+
+.drink-image {
+  height:250px;
+  width:250px;
+  float:right;
+  margin:0 0 0 15px;
+}
+
 /* content */
 
 .main-copy {

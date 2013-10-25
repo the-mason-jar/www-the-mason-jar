@@ -31,6 +31,9 @@
       <h2 class="mixologist">Submitted by: <a href="<%= @document.mixologist.github %>"><%= @document.mixologist.name %></a></h2>
     <% end %>
   </header>
+    <% if @document.image: %>
+      <img class="drink-image" src="<%- @document.image %>" />
+    <% end %>
     <%- @content %>
     <%- @getBlock("scripts").toHTML() %>
   <footer class="footer">
