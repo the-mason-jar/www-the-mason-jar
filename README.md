@@ -9,7 +9,7 @@ To build the site to pull in new changes in the [primary recipe repo](https://gi
 1. Commit any changes to the primary repo and push them up to Github
 2. Go into the primary recipe repo submodule directory `cd src/documents/the-mason-jar`
 3. Pull primary recipes repo `git pull origin master`
-4. Once you've got everything, you might need to also `git push origin master`. If you get an error from Heroku about submodules, this usually fixes that.
+4. Run `git submodule update`
 4. Head back up to the root directory `cd ../../../`
 5. Run `docpad build` or, if that doesn't work `docpad run`
 6. Add and commit the changes `git add` then `git commit -am`
@@ -20,7 +20,7 @@ To build the site to pull in new changes in the [primary recipe repo](https://gi
 How to handle a tricky merge:
 
 1. The "out" folder will usually have conflicts you'll need to merge manually
-2. Take care of any conflicts in the "src" folder
+2. Take care of any conflicts in the /src folder
 3. Run `docpad build` or, if that doesn't work `docpad run`
 4. Add and commit the changes `git add` then `git commit -am`
 5. Should be good to go
