@@ -5,11 +5,15 @@
 docpadConfig = {
 	# ...
 
+    documentsPaths: [
+        'pages', 'recipes'
+    ]
+
 	plugins:
 		repocloner:
 			repos: [
 				name: 'Recipes'
-				path: 'src/documents/recipes'
+				path: 'recipes'
 				branch: 'master'
 				url: 'https://github.com/the-mason-jar/the-mason-jar.git'
 			]
