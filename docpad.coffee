@@ -13,7 +13,7 @@ docpadConfig = {
 		repocloner:
 			repos: [
 				name: 'Recipes'
-				path: 'recipes'
+				path: 'src/recipes'
 				branch: 'master'
 				url: 'https://github.com/the-mason-jar/the-mason-jar.git'
 			]
