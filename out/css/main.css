@@ -127,19 +127,20 @@ hr {
 /* nav */
 
 .site-header {
-  color: #171717;
+  color: #fff;
   height:64px;
   padding:10px 0;
-  background-color: #efefef;
+  background-color: #000;
   border-bottom:1px dotted #ccc;
 }
 
 nav ul {
   font-size: .75em;
-  text-align: right;
+  text-align: center;
   list-style: none;
-  margin:0 -20px 0 0;
+  margin:0;
   padding:0;
+  background-color: #000;
 }
 
 
@@ -151,13 +152,13 @@ nav li {
 }
 
 nav li a {
-  color: #171717;
+  color: #fff;
   text-decoration: none;
   font-weight: bold;
 }
 
 nav li a:hover {
-  color:#996666;
+  color:#efefef;
 }
 
 .logo {

@@ -31,6 +31,9 @@ docpadConfig = {
         allInfusions: (database) -> database.findAll({relativeOutDirPath:/infusions[\/\\]\w+/},[date:-1]).on('add', (document) ->
                 document.setMetaDefaults(layout:'recipe')  unless document.get('layout'))
 
+        allFoods: (database) -> database.findAll({relativeOutDirPath:/foods[\/\\]\w+/},[date:-1]).on('add', (document) ->
+                document.setMetaDefaults(layout:'recipe')  unless document.get('layout'))
+
         allExtras: (database) -> database.findAll({relativeOutDirPath:/extras[\/\\]\w+/},[date:-1]).on('add', (document) ->
                 document.setMetaDefaults(layout:'recipe')  unless document.get('layout'))
 

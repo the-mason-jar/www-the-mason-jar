@@ -21,6 +21,18 @@ layout: default
       <% end %>
   </ul>
 
+  <% else if @document.title=="Foods": %>
+
+    <ul id="directory">
+      <% for page in @getCollection("allFoods").toJSON(): %>
+          <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
+              <a href="<%= page.url %>">
+                  <%= page.title %>
+              </a>
+          </li>
+      <% end %>
+  </ul>
+
   <% else if @document.title=="Infusions": %>
 
     <ul id="directory">
