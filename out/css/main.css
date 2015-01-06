@@ -320,6 +320,9 @@ footer .copy, footer .copy a {
     font-size: 12px;
   }
 
+  .header h1 {
+    font-size:1.6em;
+  }
 
   .drink-image {
     width:100%;
