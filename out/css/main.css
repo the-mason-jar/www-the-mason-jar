@@ -90,7 +90,7 @@ hr {
 
 .header {
   margin: 0 0 2em;
-  background-color: #333;
+  background-color: #222;
 }
 
 .header h1 {
@@ -274,9 +274,9 @@ footer .copy, footer .copy a {
   }
 
   .header img {
-    height: 69px;
-    width: 157px;
-    margin: 0.6em 0;
+    height: 70px;
+    width: 163px;
+    margin: 0.5em 0;
   }
 
   .site-header {
