@@ -90,8 +90,7 @@ hr {
 
 .header {
   margin: 0 0 2em;
-  background-color: #000;
-  border-bottom: 1px dashed #d2d2d2;
+  background-color: #333;
 }
 
 .header h1 {
