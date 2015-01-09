@@ -22,10 +22,10 @@
         </ul>
       </nav>
   </div>
-  <div class="content-wrap">
   <header class="header">
-    <h1 class="main-title"><img src="/images/primary-brand-logo.png" alt="The Mason Jar" /></h1>
+    <h1 class="main-title"><img src="/images/primary-brand-logo-2015.png" alt="The Mason Jar" /></h1>
   </header>
+  <div class="content-wrap">
     <section class="main-copy">
       <%- @content %>
     </section>

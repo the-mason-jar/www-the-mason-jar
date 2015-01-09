@@ -40,7 +40,6 @@ pre {
 
 h1 {
   font-size: 2em;
-  margin-bottom: 1em;
 }
 
 h2 {
@@ -90,7 +89,8 @@ hr {
 /* page header */
 
 .header {
-  margin: 3em 0 2em;
+  margin: 0 0 2em;
+  background-color: #000;
   border-bottom: 1px dashed #d2d2d2;
 }
 
@@ -98,18 +98,18 @@ hr {
   font-size: 2.6em;
   text-align: center;
   font-weight: 700;
-  margin: 0;
+  padding: 0.5em 0;
+  color: #fff;
 }
 
 .header img {
-  height:248px;
-  width:307px;
-  margin-bottom:20px;
+  height: 98px;
+  width: 274px;
 }
 
 .header a, .header a:hover {
   text-decoration: none;
-  color: #171717;
+  color: #efefef;
 }
 
 .header .mixologist {
@@ -117,10 +117,12 @@ hr {
   font-style: italic;
   text-align: center;
   margin-top: -0.3em;
+  color: #fff;
 }
 
 .header .mixologist a {
   text-decoration: underline;
+  color: #fff;
 }
 
 
@@ -159,25 +161,6 @@ nav li a {
 
 nav li a:hover {
   color:#efefef;
-}
-
-.logo {
-  float: left;
-  height: 54px;
-  padding-top:5px;
-}
-
-.logo a {
-  color:#fff;
-  display: block;
-  width: 107px;
-  height: 54px;
-
-}
-
-.logo a img {
-  width:107px;
-  height:54px;
 }
 
 /* navbar overrides */
@@ -231,18 +214,6 @@ select {
   text-align: center;
 }
 
-/* drink images */
-
-.drink-image {
-  float:right;
-  margin:0 0 0 15px;
-}
-
-.drink-image img {
-  height:250px;
-  width:250px;
-}
-
 /* page footer */
 
 footer {
@@ -294,47 +265,32 @@ footer .copy, footer .copy a {
     width: auto;
     padding: 0 1em;
   }
+
   .header {
-    margin: 1em 0;
+    margin: 0 0 0.6em;
+  }
+
+  .header h1 {
+    font-size: 1.6em;
   }
 
   .header img {
-    height: 198px;
-    width: 257px;
-    margin-bottom: 0.6em;
+    height: 69px;
+    width: 157px;
+    margin: 0.6em 0;
   }
 
   .site-header {
-    height:60px;
-  }
-
-  .logo {
-   display:none;
+    height: 60px;
   }
 
   nav ul {
     margin:0 auto;
     text-align: center;
   }
+
   nav li {
     font-size: 12px;
-  }
-
-  .header h1 {
-    font-size:1.6em;
-  }
-
-  .drink-image {
-    width:100%;
-    height:200px;
-    margin:0 0 20px 0;
-    overflow:hidden;
-  }
-
-  .drink-image img {
-    width:320px;
-    height:320px;
-    text-align: center;
   }
 
   .main-copy {
@@ -353,7 +309,7 @@ footer .copy, footer .copy a {
   }
 
   .sidebar-description {
-  text-align: center;
+    text-align: center;
 }
 
   #latest {

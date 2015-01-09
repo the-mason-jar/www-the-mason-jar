@@ -18,7 +18,6 @@
         </ul>
       </nav>
   </div>
-  <div class="content-wrap">
   <header class="header">
     <h1 class="main-title"><%= @getPageTitle() %></h1>
     <% if @document.subtitle: %>
@@ -27,6 +26,7 @@
       <h2 class="mixologist">Submitted by: <a href="<%= @document.mixologist.github %>"><%= @document.mixologist.name %></a></h2>
     <% end %>
   </header>
+  <div class="content-wrap">
       <% if @document.image: %>
         <span class="drink-image"><img src="<%- @document.image %>" /></span>
       <% end %>
