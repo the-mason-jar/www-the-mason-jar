@@ -115,7 +115,8 @@ hr {
   font-size: 1em;
   font-style: italic;
   text-align: center;
-  margin-top: -0.3em;
+  margin-top: -0.5em;
+  padding-bottom: 2em;
   color: #fff;
 }
 
@@ -278,6 +279,10 @@ footer .copy, footer .copy a {
     width: 163px;
     margin: 0.5em 0;
   }
+
+  .header .mixologist {
+    padding-bottom: 1.4em;
+}
 
   .site-header {
     height: 60px;
