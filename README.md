@@ -13,8 +13,9 @@ To build the site to pull in new changes in the [primary recipe repo](https://gi
 4. Head back up to the root directory `cd ../../../`
 5. Run `docpad build` or, if that doesn't work `docpad run`
 6. Add and commit the changes `git add` then `git commit -am`
-7. Push to Github `git push origin master`
-8. Push to Heroku `git push heroku master`
+7. Add Heroku as a remote `git remote add heroku git@heroku.com:www-the-mason-jar.git`
+8. Push to Github `git push origin master`
+9. Push to Heroku `git push heroku master`
 
 
 How to handle a tricky merge:
