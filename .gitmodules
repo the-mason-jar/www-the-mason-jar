@@ -1,1 +1,4 @@
 
+[submodule "src/documents/the-mason-jar"]
+	path = src/documents/the-mason-jar
+	url = https://github.com/the-mason-jar/the-mason-jar.git
