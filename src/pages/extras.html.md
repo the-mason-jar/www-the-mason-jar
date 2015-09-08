@@ -1,5 +1,5 @@
 ---
 layout: directory
-title: Garnishes & Such
+title: Garnishes, Mixers & More
 isPage: true
 ---
