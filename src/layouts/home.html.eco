@@ -1,0 +1,61 @@
+<html>
+<head>
+    <title><%= @getPreparedTitle() %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon.png" />
+    <%- @getBlock("meta").toHTML() %>
+    <%- @getBlock("styles").add(["/css/main.css"]).toHTML() %>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+</head>
+<body>
+  <div class="site-header">
+      <nav role="navigation">
+        <ul class="group">
+          <li><a href="/">Home</a></li>
+          <li><a href="/cocktails.html">Cocktails</a></li>
+          <li><a href="/foods.html">Foods</a></li>
+          <li><a href="/extras.html">Extras</a></li>
+        </ul>
+      </nav>
+  </div>
+  <header class="header">
+    <h1 class="main-title"><img src="/images/primary-brand-logo-2015.png" alt="The Mason Jar" /></h1>
+  </header>
+  <div class="content-wrap">
+    <section class="main-copy">
+      <%- @content %>
+    </section>
+    <section class="sidebar-lists">
+
+      <h3 class="sidebar-description">Featured Cocktail: <% for page in @getCollection("featured").toJSON(): %>
+            <a href="<%= page.url %>">
+                <%= page.title %>
+            </a>
+          <% end %>
+      </h3>
+
+      <h3 class="sidebar-description">New Recipes</h3>
+
+      <ul id="latest">
+          <% for page in @getCollection("allCocktails").toJSON(): %>
+              <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
+                  <a href="<%= page.url %>">
+                      <%= page.title %>
+                  </a>
+              </li>
+          <% end %>
+    </ul>
+    </section>
+    <%- @getBlock("scripts").toHTML() %>
+  <footer class="footer">
+    <section class="copy">
+      <h4 class="disclaimer">The Mason Jar Project</h4>
+      <p>Est. 2013 by D. Keith Robinson &amp; Chad Seeger</a></p>
+    </section>
+  </footer>
+  </div>
+</body>
+</html>

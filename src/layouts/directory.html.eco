@@ -1,0 +1,60 @@
+---
+layout: default
+---
+
+  <% if @document.title=="Cocktails": %>
+
+  <h2 class="description">Featured Cocktail: <% for page in @getCollection("featured").toJSON(): %>
+        <a href="<%= page.url %>">
+            <%= page.title %>
+        </a>
+      <% end %>
+  </h2>
+
+  <ul id="directory">
+      <% for page in @getCollection("allCocktails").toJSON(): %>
+          <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
+              <a href="<%= page.url %>">
+                  <%= page.title %>
+              </a>
+          </li>
+      <% end %>
+  </ul>
+
+  <% else if @document.title=="Foods": %>
+
+    <ul id="directory">
+      <% for page in @getCollection("allFoods").toJSON(): %>
+          <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
+              <a href="<%= page.url %>">
+                  <%= page.title %>
+              </a>
+          </li>
+      <% end %>
+  </ul>
+
+  <% else if @document.title=="Infusions": %>
+
+    <ul id="directory">
+      <% for page in @getCollection("allInfusions").toJSON(): %>
+          <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
+              <a href="<%= page.url %>">
+                  <%= page.title %>
+              </a>
+          </li>
+      <% end %>
+  </ul>
+
+  <% else: %>
+
+    <ul id="directory">
+      <% for page in @getCollection("allExtras").toJSON(): %>
+          <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
+              <a href="<%= page.url %>">
+                  <%= page.title %>
+              </a>
+          </li>
+      <% end %>
+  </ul>
+
+  <% end %>

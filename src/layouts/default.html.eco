@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title><%= @getPreparedTitle() %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%- @getBlock("meta").toHTML() %>
+    <%- @getBlock("styles").add(["/css/main.css"]).toHTML() %>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+</head>
+<body>
+    <div class="site-header">
+      <nav role="navigation">
+        <ul class="group">
+          <li><a href="/">Home</a></li>
+          <li><a href="/cocktails.html">Cocktails</a></li>
+          <li><a href="/foods.html">Foods</a></li>
+          <li><a href="/extras.html">Extras</a></li>
+        </ul>
+      </nav>
+  </div>
+  <header class="header">
+    <h1 class="main-title"><%= @getPageTitle() %></h1>
+    <% if @document.subtitle: %>
+      <h2 class="description"><%- @document.subtitle %></h2>
+    <% else if @document.mixologist: %>
+      <h2 class="mixologist">Submitted by: <a href="<%= @document.mixologist.github %>"><%= @document.mixologist.name %></a></h2>
+    <% end %>
+  </header>
+  <div class="content-wrap">
+      <% if @document.image: %>
+        <span class="drink-image"><img src="<%- @document.image %>" /></span>
+      <% end %>
+      <%- @content %>
+    <%- @getBlock("scripts").toHTML() %>
+  <footer class="footer">
+    <section class="copy">
+      <h4 class="disclaimer">The Mason Jar Project</h4>
+      <p>Est. 2013 by D. Keith Robinson &amp; Chad Seeger</a></p>
+    </section>
+  </footer>
+  </div>
+</body>
+</html>
