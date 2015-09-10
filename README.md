@@ -4,9 +4,15 @@
 
 A static front-end to the [primary recipe repo](https://github.com/the-mason-jar/the-mason-jar). If you're looking at this and want to submit your own cocktails or infusions, [go there](https://github.com/the-mason-jar/the-mason-jar).
 
-#### To get running locally
+#### To get running locally (beta)
 
-Coming soon!
+1. Install the latest version of [DocPad](http://docpad.org)
+2. Clone this repo
+3. Run `docpad update`
+4. Go into the primary recipe repo submodule directory `cd src/documents/the-mason-jar`
+5. Run `git submodule init`
+6. Run `git submodule update`
+7. Do a `git pull origin master` to get the latest
 
 #### To build the site to pull in new changes in the [primary recipe repo](https://github.com/the-mason-jar/the-mason-jar):
 
