@@ -4,5 +4,4 @@ layout: default
 
 <article>
   <%- @content %>
-  <p class="prose-edit"><a href="http://prose.io/#the-mason-jar/the-mason-jar/edit/master/recipes/<%= @document.relativePath %>">Edit with prose.io</a> (Requires a GitHub account and, please, use with caution.)
 </article>
